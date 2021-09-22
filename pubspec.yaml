@@ -1,0 +1,73 @@
+name: template
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons:
+
+  hive:
+  intl:
+  retrofit:
+  provider:
+  auto_route:
+  reflectable:
+  path_provider:
+  flutter_phoenix:
+  easy_localization:
+  permission_handler:
+  dart_json_mapper_flutter:
+
+  fluttertoast:
+  adaptive_dialog:
+  
+  
+
+
+dev_dependencies:
+  build_runner:
+  flutter_lints:
+  effective_dart:
+  retrofit_generator: any
+  auto_route_generator:
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/images/
+    - assets/svg/
+    - assets/fonts/
+    - assets/translations/
+
+  fonts:
+    - family: extra-bold
+      fonts:
+        - asset: assets/fonts/OpenSans-ExtraBold.ttf
+
+    - family: bold
+      fonts:
+        - asset: assets/fonts/OpenSans-Bold.ttf
+
+    - family: semi-bold
+      fonts:
+        - asset: assets/fonts/OpenSans-SemiBold.ttf
+        
+    - family: light
+      fonts:
+        - asset: assets/fonts/OpenSans-Light.ttf
+
+    - family: regular
+      fonts:
+        - asset: assets/fonts/OpenSans-Regular.ttf
