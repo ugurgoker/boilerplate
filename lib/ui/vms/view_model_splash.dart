@@ -5,9 +5,7 @@ import '../../core/constant/app_config.dart';
 import '../../core/services/service_api.dart';
 import '../../core/services/service_route.gr.dart';
 import '../../core/models/model_login.dart';
-import '../../core/settings/controller_language.dart';
 import '../../core/settings/controller_theme.dart';
-import '../../core/utils/general_data.dart';
 import '../../ui/base/base_view_model.dart';
 import 'package:dio/dio.dart';
 
@@ -20,7 +18,6 @@ class ViewModelSplash extends ViewModelBase {
     this.context = context;
     if (!kIsWeb) {
       ThemeController.getTheme();
-      LanguageController.setLanguage(context: context, language: GeneralData.getLanguage());
     }
     init();
   }

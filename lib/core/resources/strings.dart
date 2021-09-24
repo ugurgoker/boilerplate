@@ -5,7 +5,7 @@ class AppStrings {
   static const String translationsPath = 'assets/translations';
   static const List<Locale> supportedLocales = [Locale('tr', 'TR'), Locale('en', 'US')];
 
-  final String appName = 'appName'.tr();
+  final String appName = 'Template Project';
   final String ok = 'ok'.tr();
   final String cancel = 'cancel'.tr();
 }

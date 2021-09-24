@@ -20,7 +20,7 @@ import 'core/utils/general_data.dart';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 
-void main() async {
+Future<void> main() async {
   initializeReflectable();
   JsonMapperContext();
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,16 +28,16 @@ void main() async {
   
   if(!kIsWeb) {
     Hive.init((await getApplicationDocumentsDirectory()).path);
-    GeneralData.hive = await Hive.openBox(R.string.appName);
+    GeneralData.hive = await Hive.openBox('hiveBox');
   }
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: R.color.transparent));
   
   runApp(
     EasyLocalization(
-      child: Phoenix(child: const MyApp()),
       path: AppStrings.translationsPath,
       supportedLocales: AppStrings.supportedLocales,
       fallbackLocale: AppStrings.supportedLocales.first,
+      child: Phoenix(child: const MyApp()),
     ),
   );
 }
@@ -55,6 +55,9 @@ class MyApp extends StatelessWidget {
           primarySwatch: R.color.primarySwatch,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
         debugShowCheckedModeBanner: false,
         routerDelegate: AutoRouterDelegate(AppConfig.rootRouter, navigatorObservers: () => [MyObserver()]),
         routeInformationProvider: AutoRouteInformationProvider(),
