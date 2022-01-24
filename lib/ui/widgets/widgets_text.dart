@@ -34,7 +34,7 @@ class TextBasic extends StatelessWidget {
       overflow: TextOverflow.ellipsis,
       textAlign: textAlign,
       maxLines: maxLines ?? 999,
-      textScaleFactor: 1.2,
+      textScaleFactor: 1,
       style: TextStyle(
         letterSpacing: letterSpacing ?? 0.0,
         color: color ?? R.color.black,

@@ -2,16 +2,19 @@ import '../enums/enum_app.dart';
 import '../utils/general_data.dart';
 
 class ThemeController {
-  static ThemeApperance currentAppTheme = ThemeApperance.light;
+  static ThemeController? _instance;
+  static ThemeController getInstance() => _instance ??= ThemeController();
+  
+  ThemeApperance currentAppTheme = ThemeApperance.light;
 
-  static void setTheme(ThemeApperance theme) {
+  void setTheme(ThemeApperance theme) {
     currentAppTheme = theme;
-    if(GeneralData.getDarkMode() != theme) {
-      GeneralData.setDarkMode(theme);
+    if(GeneralData.getInstance().getDarkMode() != theme) {
+      GeneralData.getInstance().setDarkMode(theme);
     }
   }
 
-  static void getTheme() {
-    setTheme(GeneralData.getDarkMode());
+  void getTheme() {
+    setTheme(GeneralData.getInstance().getDarkMode());
   }
 }

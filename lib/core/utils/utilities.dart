@@ -27,11 +27,11 @@ class Utilities {
   }
 
   static dynamic getUserSp(String id, {dynamic defaultValue}) {
-    return GeneralData.hive.get(id, defaultValue: defaultValue);
+    return GeneralData.getInstance().hive.get(id, defaultValue: defaultValue);
   }
 
   static void setUserSp(String id, dynamic value) async {
-    return await GeneralData.hive.put(id, value);
+    return await GeneralData.getInstance().hive.put(id, value);
   }
 
 

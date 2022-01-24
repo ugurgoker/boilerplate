@@ -1,12 +1,12 @@
 import 'package:dart_json_mapper/dart_json_mapper.dart' show JsonMapper, JsonMapperAdapter, typeOf;
-import '../../core/models/model_corporation.dart';
-import '../../core/models/model_login.dart';
-import '../../core/models/model_login_response.dart';
-import '../../core/models/response_data.dart';
+import '../models/model_corporation.dart';
+import '../models/model_login.dart';
+import '../models/model_login_response.dart';
+import '../models/response_data.dart';
 
-class JsonMapperContext {
+class ServiceJsonMapperContext {
   
-  JsonMapperContext() {
+  ServiceJsonMapperContext() {
     JsonMapper().useAdapter(JsonMapperAdapter(valueDecorators: {
       typeOf<List<ModelCorporation>>(): (value) => value.cast<ModelCorporation>(),
       typeOf<Set<ModelCorporation>>(): (value) => value.cast<ModelCorporation>(),

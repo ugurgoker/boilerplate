@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import '../../core/resources/_r.dart';
 
 class NetworkImageWithPlaceholder extends StatelessWidget {
@@ -32,15 +34,22 @@ class NetworkImageWithPlaceholder extends StatelessWidget {
         borderRadius: BorderRadius.circular(isCircle ? size : 0.0),
         child: ColorFiltered(
           colorFilter: ColorFilter.mode(
-            isColorFilterActive! ? R.color.black.withOpacity(0.4) : R.color.transparent,
+            isColorFilterActive!
+                ? R.color.black.withOpacity(0.4)
+                : R.color.transparent,
             BlendMode.darken,
           ),
-          child: FadeInImage.assetNetwork(
-            image: imageUrl!,
-            placeholder: placeholderPath ?? R.drawable.placeholder,
+          child: CachedNetworkImage(
+            imageUrl: imageUrl!,
             fit: boxFit ?? BoxFit.cover,
             height: size,
             width: size,
+            placeholder: (ctx, str) => Image.asset(
+              placeholderPath ?? R.drawable.placeholder,
+              fit: BoxFit.cover,
+              height: size,
+              width: size,
+            ),
           ),
         ),
       ),

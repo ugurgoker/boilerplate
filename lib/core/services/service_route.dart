@@ -15,6 +15,7 @@ export 'service_route.gr.dart';
     RedirectRoute(path: '*', redirectTo: '/splash'),
   ],
 )
+
 class $RootRouter {}
 
 class MyObserver extends AutoRouterObserver {
@@ -27,5 +28,4 @@ class MyObserver extends AutoRouterObserver {
   void didPop(Route route, Route? previousRoute) {
     log('didPop: ${route.isActive.toString()} ${previousRoute!.isActive.toString()}');
   }
-
 }

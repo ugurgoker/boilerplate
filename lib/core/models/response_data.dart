@@ -2,19 +2,20 @@ import 'package:dart_json_mapper/dart_json_mapper.dart' show JsonMapper, jsonSer
 
 @jsonSerializable
 class ResponseData<T> {
-  final int? responseDataType;
+  bool isSuccess;
   final int? totalRowCount;
-  final String code;
-  final String message;
+  String? code;
+  String? message;
   final DateTime? serverTime;
+  int? statusCode;
   T? result;
 
-  ResponseData({this.responseDataType, this.totalRowCount, required this.code, required this.message, this.serverTime, this.result});
+  ResponseData({required this.isSuccess, this.totalRowCount, this.code, this.message, this.serverTime, this.result});
 
 
   factory ResponseData.fromJson(Map<String, dynamic> json) {
     return ResponseData<T>(
-      responseDataType: json['responseDataType'],
+      isSuccess: json['responseDataType'] == 1,
       totalRowCount: json['totalRowCount'],
       code: json['code'],
       message: json['message'],
