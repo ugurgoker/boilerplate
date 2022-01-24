@@ -60,8 +60,6 @@ In Visual Studio Code, navigate to `Preferences` -> `Settings` and search for `F
 * Login
 * Routing
 * Theme
-* Dio
-* Retrofit
 * Hive Database
 * Utilities file 
 * Alert Dialogs
@@ -80,7 +78,6 @@ In Visual Studio Code, navigate to `Preferences` -> `Settings` and search for `F
 
 * hive
 * intl
-* retrofit
 * provider
 * auto_route
 * reflectable
@@ -91,9 +88,12 @@ In Visual Studio Code, navigate to `Preferences` -> `Settings` and search for `F
 * dart_json_mapper_flutter
 * fluttertoast
 * adaptive_dialog
+* flutter_svg
+* flutter_svg_provider
+* cached_network_image
+* animate_do
 * build_runner
 * effective_dart
-* retrofit_generator
 * auto_route_generator
 
 ### Folder Structure
@@ -130,10 +130,14 @@ core/
 
 ```
 ui/
+|- animations/
 |- base/
+|- bs/
+|- fragments/
 |- packages/
 |- views/
 |- vms/
+|- vms_fragment/
 |- widgets/
 ```
 
