@@ -1,3 +1,5 @@
+name: template
+description: Flutter boilerplate project.
 
 publish_to: 'none'
 

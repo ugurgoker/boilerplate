@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:fora/ui/widgets/widgets_text.dart';
+import '/ui/widgets/widgets_text.dart';
 import '/core/constant/ui_brightness_style.dart';
 import '/ui/animations/splash_transition.dart';
 import '/ui/vms/view_model_splash.dart';
