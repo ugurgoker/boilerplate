@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:dart_json_mapper/dart_json_mapper.dart' show JsonMapper, JsonProperty, jsonSerializable;
+import 'package:dart_json_mapper/dart_json_mapper.dart' show JsonProperty, jsonSerializable;
 
 @jsonSerializable
 class ModelLoginResponse {
@@ -31,8 +29,5 @@ class ModelLoginResponse {
   final bool? isPhoneConfirmationRequired;
 
   ModelLoginResponse({this.id, this.userTypeId, this.authToken, this.expiresIn, this.roles, this.permissions, this.changePassword, this.isHrRole, this.isUserContractRequired, this.corpId, this.isPhoneConfirmationRequired});
-
-  factory ModelLoginResponse.fromJson(Map<String, dynamic> json) => JsonMapper.deserialize<ModelLoginResponse>(jsonEncode(json)) as ModelLoginResponse;
-  Map<String, dynamic> toJson() => JsonMapper.serialize(this) as Map<String, dynamic>;
 
 }

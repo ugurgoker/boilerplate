@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../core/resources/_r.dart';
-import '../../core/utils/shadows.dart';
+import '/core/resources/_r.dart';
+import '/core/utils/shadows.dart';
 
 import 'widgets_text.dart';
 
@@ -56,7 +56,7 @@ class ButtonBasic extends StatelessWidget {
           TextBasic(
             text: text ?? '',
             color: textColor ?? R.color.midnight,
-            fontFamily: fontFamily ?? R.fonts.bold,
+            fontFamily: fontFamily ?? R.fonts.interBold,
             fontSize: fontSize ?? 16.0,
             fontWeight: fontWeight,
           ),

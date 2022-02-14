@@ -33,4 +33,15 @@ extension ExtensionString on String {
         .replaceAll(" ", "");
     return str;
   }
+
+  String getFirstCharacter() {
+    String value = this;
+    return value.substring(0, 1).toUpperCase();
+  }
+
+  String getFirstCharacters() {
+    String value = this;
+    var str = value.split(' ');
+    return (str.first.substring(0, 1) + str.last.substring(0, 1)).toUpperCase();
+  }
 }

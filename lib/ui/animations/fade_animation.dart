@@ -1,66 +1,37 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import '/ui/packages/simple_anim.dart/controlled_animation.dart';
+import '/ui/packages/simple_anim.dart/multi_track_tween.dart';
 
-class FadeInLeftBasic extends StatelessWidget {
+class FadeAnimation extends StatelessWidget {
+  final double delay;
   final Widget child;
-  final Duration? duration;
-  final Duration? delay;
-  const FadeInLeftBasic({ Key? key, required this.child, this.duration, this.delay}) : super(key: key);
+
+  const FadeAnimation({Key? key, required this.delay, required this.child}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
-    return FadeInLeft(
-      duration: duration ?? const Duration(milliseconds: 500),
-      delay: delay ?? const Duration(milliseconds: 0),
+    final tween = MultiTrackTween([
+      Track("opacity").add(const Duration(milliseconds: 500), Tween(begin: 0.0, end: 1.0)),
+      Track("translateY").add(
+        const Duration(milliseconds: 500),
+        Tween(begin: -130.0, end: 0.0),
+        curve: Curves.easeOut,
+      ),
+    ]);
+
+    return ControlledAnimation(
+      delay: Duration(milliseconds: (500 * delay).round()),
+      duration: tween.duration,
+      tween: tween,
       child: child,
-    );
-  }
-}
-
-class FadeInRightBasic extends StatelessWidget {
-  final Widget child;
-  final Duration? duration;
-  final Duration? delay;
-  const FadeInRightBasic({ Key? key, required this.child, this.duration, this.delay}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return FadeInRight(
-      duration: duration ?? const Duration(milliseconds: 500),
-      delay: delay ?? const Duration(milliseconds: 0),
-      child: child,
-    );
-  }
-}
-
-class FadeInUpBasic extends StatelessWidget {
-  final Widget child;
-  final Duration? duration;
-  final Duration? delay;
-  const FadeInUpBasic({ Key? key, required this.child, this.duration, this.delay}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return FadeInUp(
-      duration: duration ?? const Duration(milliseconds: 500),
-      delay: delay ?? const Duration(milliseconds: 0),
-      child: child,
-    );
-  }
-}
-
-class FadeInDownBasic extends StatelessWidget {
-  final Widget child;
-  final Duration? duration;
-  final Duration? delay;
-  const FadeInDownBasic({ Key? key, required this.child, this.duration, this.delay}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return FadeInDown(
-      duration: duration ?? const Duration(milliseconds: 500),
-      delay: delay ?? const Duration(milliseconds: 0),
-      child: child,
+      builderWithChild: (context, child, Map<String, dynamic> animation) => Opacity(
+        opacity: animation["opacity"],
+        child: Transform.translate(
+          offset: Offset(0, animation["translateY"]), 
+          child: child
+        ),
+      ),
     );
   }
 }

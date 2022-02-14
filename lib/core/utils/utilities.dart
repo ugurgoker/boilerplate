@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import '/ui/base/base_bottom_sheet.dart';
 import '../models/model_alert_dialog.dart';
 import '../resources/_r.dart';
 
@@ -47,16 +49,34 @@ class Utilities {
     FocusScope.of(context).unfocus();
   }
 
-  static void startNewView(BuildContext context, {required String route, bool? isReplace, bool? clearStack, ChangeNotifier? viewModel}) {
-    
+  static void startNewView(BuildContext context, {required PageRouteInfo<dynamic> route, bool isReplace = false, bool clearStack = false, ChangeNotifier? viewModel}) {
+    Utilities.hideKeyboard(context);
+    if (isReplace && clearStack) {
+      GeneralData.rootRouter.replaceAll([route]);
+    } else if (isReplace) {
+      GeneralData.rootRouter.replace(route);
+    } else {
+      GeneralData.rootRouter.push(route);
+    }
+  }
+
+  static Future<void> showBaseBottomSheet(BuildContext context, Widget bottomSheet, {bool isDismissible = true}) async {
+    await showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      barrierColor: R.color.black.withOpacity(0.8),
+      backgroundColor: R.color.transparent,
+      isDismissible: isDismissible,
+      builder: (context) => BottomSheetBase(child: bottomSheet),
+    );
   }
 
   static void onBackPressed(BuildContext context, [ChangeNotifier? viewModel]) {
+    GeneralData.rootRouter.pop();
   }
 
 
   static Future<void> logout(BuildContext context) async {
-    //TODO add logout functions
   }
 
 }

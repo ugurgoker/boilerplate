@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../resources/_r.dart';
+import '/core/resources/_r.dart';
 
 class UIBrightnessStyle {
   static UIBrightnessStyle? _instance;

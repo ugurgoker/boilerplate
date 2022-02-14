@@ -1,5 +1,12 @@
 {
     "appName": "Template Project",
     "ok": "Tamam",
-    "cancel": "Vazgeç"
+    "cancel": "Vazgeç",
+    "genericError": "Bir şeyler yanlış gitti.",
+    "networkError": "Lütfen internet bağlantınızı kontrol edin.",
+    "connectionTimeOut": "Bağlantı zaman aşımı. Lütfen tekrar deneyin.",
+    "accessStoragePermission": "Lütfen depolama erişimi izni verin",
+    "accessCameraPermission": "Lütfen kamera erişimi izni verin",
+    "accessGalleryPermission": "Lütfen galeri erişimi izni verin",
+    "accessLocationPermission": "Lütfen lokasyon erişimi izni verin"
 }

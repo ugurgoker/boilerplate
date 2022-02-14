@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
       providers: providers,
       child: MaterialApp.router(
         theme: ThemeData(
-          fontFamily: R.fonts.regular,
+          fontFamily: R.fonts.interRegular,
           primarySwatch: R.color.primarySwatch,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),

@@ -4,14 +4,15 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:dart_json_mapper/dart_json_mapper.dart' show JsonMapper;
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
+import '/core/enums/enum_app.dart';
+import '/core/models/response_data.dart';
+import '/core/resources/_r.dart';
+import '/core/services/service_endpoint.dart';
+import '/core/utils/general_data.dart';
+import '/core/utils/utilities.dart';
 import 'package:http/io_client.dart';
-import '../../core/enums/enum_app.dart';
-import '../../core/utils/utilities.dart';
-import '../../core/utils/general_data.dart';
-import '../../core/models/response_data.dart';
-import '../../core/services/service_endpoint.dart';
 
 class ServiceApi {
   static ServiceApi? _instance;
@@ -55,11 +56,11 @@ class ServiceApi {
           case ApiMethod.multipart:
             return _multipartRequest<T>(context, apiRequest: apiRequest);
           default:
-            return ResponseData(isSuccess: false, message: 'R.string.genericError');
+            return ResponseData(isSuccess: false, message: R.string.genericError);
         }
       }
       else {
-        return ResponseData(isSuccess: false, message: 'R.string.networkError');
+        return ResponseData(isSuccess: false, message: R.string.networkError);
       }
     } on ClientException catch(e) {
       return ResponseData(isSuccess: false, message: e.toString());
@@ -98,7 +99,7 @@ class ServiceApi {
     ResponseData<T> o = ResponseData<T>(isSuccess: false);
     o.statusCode = response.statusCode;
     if (isTimeOut) {
-      o.message = 'R.string.connectionTimeOut';
+      o.message = R.string.connectionTimeOut;
     } else {
       o = ResponseData<T>.fromJson(jsonDecode(response.body));
       GeneralData.getInstance().serverTime = o.serverTime!;

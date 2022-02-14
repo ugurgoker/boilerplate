@@ -1,6 +1,6 @@
 import 'package:http/http.dart';
-import '../enums/enum_app.dart';
-import '../models/model_login.dart';
+import '/core/enums/enum_app.dart';
+import '/core/models/model_login.dart';
 
 class ServiceEndpoint {
   static ServiceEndpoint? _instance;

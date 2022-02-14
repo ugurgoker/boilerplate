@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../core/resources/_r.dart';
+import '/core/resources/_r.dart';
 
 class Shadows {
   static Shadows? _instance;

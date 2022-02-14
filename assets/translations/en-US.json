@@ -1,5 +1,12 @@
 {
     "appName": "Template Project",
     "ok": "Ok",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "genericError": "Something went wrong.",
+    "networkError": "Please check your internet connection.",
+    "connectionTimeOut": "Connection timed out. Please try again.",
+    "accessStoragePermission": "Please grant storage access",
+    "accessCameraPermission": "Please grant camera access",
+    "accessGalleryPermission": "Please grant gallery access",
+    "accessLocationPermission": "Please grant location access"
 }

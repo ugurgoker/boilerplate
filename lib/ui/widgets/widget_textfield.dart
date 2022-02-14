@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../core/resources/_r.dart';
-import '../../ui/widgets/widgets_text.dart';
+import '/core/resources/_r.dart';
+import '/ui/widgets/widgets_text.dart';
 
 class TextFieldBasic extends StatefulWidget {
   final String? title;
@@ -130,7 +130,7 @@ class _TextFieldBasicState extends State<TextFieldBasic> {
                 style: TextStyle(
                   color: widget.textColor ?? R.color.midnight,
                   fontSize: widget.fontSize ?? 14.0,
-                  fontFamily: widget.fontFamily ?? R.fonts.regular,
+                  fontFamily: widget.fontFamily ?? R.fonts.interRegular,
                   fontWeight: widget.fontWeight,
                   // letterSpacing: -1.0,
                 ),
@@ -145,13 +145,13 @@ class _TextFieldBasicState extends State<TextFieldBasic> {
                   labelStyle: TextStyle(
                     color: widget.labelTextColor ?? R.color.midnight,
                     fontSize: 14.0,
-                    fontFamily: widget.labelTextFont ?? R.fonts.regular,
+                    fontFamily: widget.labelTextFont ?? R.fonts.interRegular,
                     letterSpacing: -1.0,
                   ),
                   hintStyle: TextStyle(
                     color: widget.labelTextColor ?? R.color.grayLight,
                     fontSize: 14.0,
-                    fontFamily: widget.labelTextFont ?? R.fonts.regular,
+                    fontFamily: widget.labelTextFont ?? R.fonts.interRegular,
                     fontWeight: FontWeight.normal,
                     letterSpacing: -1.0,
                   ),

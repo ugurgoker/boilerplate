@@ -10,12 +10,11 @@ export 'service_route.gr.dart';
 @MaterialAutoRouter(
   routes: <AutoRoute>[
     AutoRoute(path: '/splash', page: ViewSplash),
-    CustomRoute<String>(path: '/login/:id', page: ViewLogin, transitionsBuilder: TransitionsBuilders.slideBottom),
+    AutoRoute(path: '/login', page: ViewLogin),
 
     RedirectRoute(path: '*', redirectTo: '/splash'),
   ],
 )
-
 class $RootRouter {}
 
 class MyObserver extends AutoRouterObserver {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../core/resources/_r.dart';
-import '../../core/utils/utilities.dart';
+import '/core/resources/_r.dart';
+import '/core/utils/utilities.dart';
 
 class BottomSheetBase extends StatelessWidget {
   final Widget child;

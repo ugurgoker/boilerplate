@@ -1,3 +1,6 @@
+import 'package:dart_json_mapper/dart_json_mapper.dart' show jsonSerializable;
+
+@jsonSerializable
 class ModelAlertDialog {
   final String? title;
   final String description;

@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:dart_json_mapper/dart_json_mapper.dart' show JsonMapper, jsonSerializable;
+import 'package:dart_json_mapper/dart_json_mapper.dart' show jsonSerializable;
 
 @jsonSerializable
 class ModelLogin {
@@ -10,7 +8,4 @@ class ModelLogin {
   String? language;
 
   ModelLogin({this.userName, this.password, this.deviceId, this.language});
-
-  factory ModelLogin.fromJson(Map<String, dynamic> json) => JsonMapper.deserialize<ModelLogin>(jsonEncode(json)) as ModelLogin;
-  Map<String, dynamic> toJson() => jsonDecode(JsonMapper.serialize(this));
 }
