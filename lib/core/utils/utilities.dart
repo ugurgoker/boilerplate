@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -69,6 +70,17 @@ class Utilities {
       isDismissible: isDismissible,
       builder: (context) => BottomSheetBase(child: bottomSheet),
     );
+  }
+
+  static Future<String> printIps() async {
+    String address = '';
+    for (var interface in await NetworkInterface.list()) {
+      for (var addr in interface.addresses) {
+        log('${addr.address} ${addr.host} ${addr.isLoopback} ${addr.rawAddress} ${addr.type.name}, ${interface.name}', name: 'NETWORK');
+        address = addr.address;
+      }
+    }
+    return address;
   }
 
   static void onBackPressed(BuildContext context, [ChangeNotifier? viewModel]) {

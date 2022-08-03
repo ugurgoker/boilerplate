@@ -1,4 +1,6 @@
+import '../constant/ui_brightness_style.dart';
 import '../enums/enum_app.dart';
+import '../resources/_r.dart';
 import '../utils/general_data.dart';
 
 class ThemeController {
@@ -12,6 +14,8 @@ class ThemeController {
     if(GeneralData.getInstance().getDarkMode() != theme) {
       GeneralData.getInstance().setDarkMode(theme);
     }
+    R.refreshClass();
+    UIBrightnessStyle.refreshClass();
   }
 
   void getTheme() {

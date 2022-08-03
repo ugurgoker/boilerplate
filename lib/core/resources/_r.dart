@@ -5,6 +5,14 @@ import '../resources/fonts.dart';
 import '../resources/strings.dart';
 
 class R {
+  static void refreshClass() {
+    _drawable = null;
+    _color = null;
+    _fonts = null;
+    _string = null;
+    _dimens = null;
+  }
+
   static Drawable? _drawable;
   static Drawable get drawable => _drawable ??= Drawable();
 

@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
+import '../extensions/extension_string.dart';
 
 class AppStrings {
-  static const String translationsPath = 'assets/translations';
-  static const List<Locale> supportedLocales = [Locale('tr', 'TR'), Locale('en', 'US')];
-
   final String appName = 'Template Project';
+  final String turkish = 'turkish'.tr();
+  final String english = 'english'.tr();
   final String ok = 'ok'.tr();
   final String cancel = 'cancel'.tr();
   final String genericError = 'genericError'.tr();

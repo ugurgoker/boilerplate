@@ -1,3 +1,11 @@
+import 'dart:developer';
+
+import 'package:flutter/material.dart';
+
+import '../../ui/widgets/widgets_text.dart';
+import '../resources/_r.dart';
+import '../settings/controller_language.dart';
+
 extension ExtensionString on String {
   String firstCharacterUppercase() {
     String value = this;
@@ -34,14 +42,67 @@ extension ExtensionString on String {
     return str;
   }
 
-  String getFirstCharacter() {
-    String value = this;
-    return value.substring(0, 1).toUpperCase();
+  List<TextSpan> highlightOccurrences(String query, {required Color textColor, Color? boldTextColor, double? fontSize, double? boldFontSize, FontWeight? fontWeight}) {
+    String source = this;
+    if (query.isEmpty || !source.toLowerCase().contains(query.toLowerCase())) {
+      return [
+        textSpanBasic(text: source, color: textColor, fontSize: fontSize ?? 14.0, fontWeight: fontWeight)
+      ];
+    }
+    final matches = query.toLowerCase().allMatches(source.toLowerCase());
+
+    int lastMatchEnd = 0;
+
+    final List<TextSpan> children = [];
+    for (var i = 0; i < matches.length; i++) {
+      final match = matches.elementAt(i);
+
+      if (match.start != lastMatchEnd) {
+        children.add(textSpanBasic(
+          text: source.substring(lastMatchEnd, match.start),
+          color: textColor,
+          fontSize: fontSize ?? 14.0, 
+          fontWeight: fontWeight,
+        ));
+      }
+
+      children.add(textSpanBasic(
+        text: source.substring(match.start, match.end),
+        fontFamily: R.fonts.interBold,
+        color: boldTextColor ?? textColor,
+        fontSize: boldFontSize ?? 14.0,
+        fontWeight: fontWeight,
+      ));
+
+      if (i == matches.length - 1 && match.end != source.length) {
+        children.add(textSpanBasic(
+          text: source.substring(match.end, source.length),
+          color: textColor,
+          fontSize: fontSize ?? 14.0, 
+          fontWeight: fontWeight,
+        ));
+      }
+
+      lastMatchEnd = match.end;
+    }
+    return children;
   }
 
-  String getFirstCharacters() {
-    String value = this;
-    var str = value.split(' ');
-    return (str.first.substring(0, 1) + str.last.substring(0, 1)).toUpperCase();
+  String tr({Map<String, dynamic>? namedArgs}) {
+    String key = this;
+    String? text = LanguageController.selectedLocaleJson[key];
+    if (text == null) {
+      log('[$key] key not found from ${LanguageController.currentLocale.toLanguageTag()}', name: 'LOCALIZATION');
+      text = '';
+    } else {
+      if (namedArgs != null) {
+        var keys = namedArgs.keys;
+        for (var item in keys) {
+          text = text!.replaceFirst('{$item}', namedArgs[item]);
+        }
+      }
+    }
+    
+    return text!;
   }
 }

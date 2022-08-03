@@ -6,4 +6,3 @@ enum ApiMethod { get, post, put, delete, multipart }
 enum ActivityState { isLoading, isLoaded, isError }
 enum AlertType { toast, warning, error, success}
 enum AuthState { notAuthenticated, unauthenticated, authenticated }
-enum PhotoSelectionType { camera, gallery }

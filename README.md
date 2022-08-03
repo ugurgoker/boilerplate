@@ -68,10 +68,11 @@ In Visual Studio Code, navigate to `Preferences` -> `Settings` and search for `F
 * Dark Theme Support
 * Multilingual Support
 * Provider example
+* Gitignore
 
 ### Up-Coming Features:
 
-* Push Notification Service
+* Push Notification Service (required firebase)
 * Log Service
 
 ### Libraries & Tools Used
@@ -83,7 +84,6 @@ In Visual Studio Code, navigate to `Preferences` -> `Settings` and search for `F
 * reflectable
 * path_provider
 * flutter_phoenix
-* easy_localization
 * permission_handler
 * dart_json_mapper_flutter
 * fluttertoast

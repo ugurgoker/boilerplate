@@ -1,4 +1,5 @@
 import 'package:dart_json_mapper/dart_json_mapper.dart' show JsonMapper, JsonMapperAdapter, typeOf;
+import 'package:template/core/models/model_dropdown.dart';
 import '/core/models/model_alert_dialog.dart';
 import '../models/model_login.dart';
 import '../models/model_login_response.dart';
@@ -20,6 +21,9 @@ class ServiceJsonMapperContext {
       
       typeOf<List<ModelLoginResponse>>(): (value) => value.cast<ModelLoginResponse>(),
       typeOf<Set<ModelLoginResponse>>(): (value) => value.cast<ModelLoginResponse>(),
+      
+      typeOf<List<ModelDropdown>>(): (value) => value.cast<ModelDropdown>(),
+      typeOf<Set<ModelDropdown>>(): (value) => value.cast<ModelDropdown>(),
     }));
   }
 }

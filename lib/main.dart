@@ -1,39 +1,43 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
-import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
+import 'core/enums/enum_app.dart';
 import 'core/services/service_json_mapper_context.dart';
 import '../provider_setup.dart';
-import '../core/resources/strings.dart';
-
 import 'core/resources/_r.dart';
+import 'core/settings/controller_language.dart';
+import 'core/settings/controller_theme.dart';
+import 'core/utils/utilities.dart';
 import 'main.reflectable.dart';
 import 'core/utils/general_data.dart';
 
-import 'package:flutter/foundation.dart' show kIsWeb;
-
 Future<void> main() async {
+  
   initializeReflectable();
   ServiceJsonMapperContext();
   WidgetsFlutterBinding.ensureInitialized();
-  await EasyLocalization.ensureInitialized();
   
-  if(!kIsWeb) {
-    Hive.init((await getApplicationDocumentsDirectory()).path);
-    GeneralData.getInstance().hive = await Hive.openBox('hiveBox');
-  }
+  await Hive.initFlutter();
+  GeneralData.getInstance().hive = await Hive.openBox('hiveBox');
+  
+  await LanguageController.initialize();
+  await LanguageController.setLanguage(AppLanguage.tr);
+  ThemeController.getInstance().getTheme();
+  // ServiceNotification.configure();
+  
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: R.color.transparent));
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge, overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
+  
+  GeneralData.ipAddress = await Utilities.printIps();
+  // GeneralData.macAddress = await GetMac.macAddress;
+  
   
   runApp(
-    EasyLocalization(
-      path: AppStrings.translationsPath,
-      supportedLocales: AppStrings.supportedLocales,
-      fallbackLocale: AppStrings.supportedLocales.first,
-      child: Phoenix(child: const MyApp()),
-    ),
+    Phoenix(child: const MyApp()),
   );
 }
 
@@ -50,10 +54,13 @@ class MyApp extends StatelessWidget {
           primarySwatch: R.color.primarySwatch,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
         debugShowCheckedModeBanner: false,
+        supportedLocales: LanguageController.supportedLocales,
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
         routerDelegate: GeneralData.getInstance().routerDelegate,
         routeInformationProvider: GeneralData.rootRouter.routeInfoProvider(),
         routeInformationParser: GeneralData.rootRouter.defaultRouteParser(),

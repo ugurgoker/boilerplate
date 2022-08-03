@@ -1,5 +1,7 @@
 {
     "appName": "Template Project",
+    "turkish": "Turkish",
+    "english": "English",
     "ok": "Ok",
     "cancel": "Cancel",
     "genericError": "Something went wrong.",

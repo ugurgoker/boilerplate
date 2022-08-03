@@ -17,19 +17,19 @@ class GeneralData {
   late AutoRouterDelegate routerDelegate = AutoRouterDelegate(rootRouter, navigatorObservers: () => [MyObserver()]);
   late DateTime serverTime;
 
+  static String ipAddress = '';
+  static String macAddress = '';
+
+  static final bool isLocale = false;
   final String baseUrl = '';
   final String fileUrl = '';
 
+  final String _spLANGUAGE = 'language';
   final String _spDARKMODE = 'dark_mode';
-  final String _spTUTORIAL = 'tutorial';
-  final String _spAUTHSTATE = 'auth_state';
 
   ThemeApperance getDarkMode() => ThemeApperance.values[Utilities.getUserSp(_spDARKMODE, defaultValue: ThemeApperance.light.index)];
   void setDarkMode(ThemeApperance value) async => Utilities.setUserSp(_spDARKMODE, value.index);
-
-  bool getIsViewTutorial() => Utilities.getUserSp(_spTUTORIAL, defaultValue: true);
-  void setIsViewTutorial(bool value) => Utilities.setUserSp(_spTUTORIAL, value);
-
-  AuthState getAuthState() => AuthState.values[Utilities.getUserSp(_spAUTHSTATE, defaultValue: AuthState.notAuthenticated.index)];
-  void setAuthState(AuthState value) async => Utilities.setUserSp(_spAUTHSTATE, value.index);
+  
+  AppLanguage getLanguage() => AppLanguage.values[Utilities.getUserSp(_spLANGUAGE, defaultValue: AppLanguage.tr.index)];
+  void setLanguage(AppLanguage value) async => Utilities.setUserSp(_spLANGUAGE, value.index);
 }
