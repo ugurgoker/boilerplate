@@ -1,5 +1,5 @@
 {
-    "appName": "Template Project",
+    "appName": "Boilerplate Project",
     "turkish": "Türkçe",
     "english": "İngilizce",
     "ok": "Tamam",
@@ -10,5 +10,8 @@
     "accessStoragePermission": "Lütfen depolama erişimi izni verin",
     "accessCameraPermission": "Lütfen kamera erişimi izni verin",
     "accessGalleryPermission": "Lütfen galeri erişimi izni verin",
-    "accessLocationPermission": "Lütfen lokasyon erişimi izni verin"
+    "accessLocationPermission": "Lütfen lokasyon erişimi izni verin",
+    "pleaseUpdateApp": "Lütfen uygulamnızı son versiyon ile güncelleyin",
+    "versionCheckMessage": "Uygulamanız {value} versiyon geridedir. Güncellemeniz önerilir",
+    "logoutConfirmation": "Çıkış yapmak istediğinizden emin misiniz?"
 }

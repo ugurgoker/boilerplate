@@ -39,7 +39,7 @@ class TextBasic extends StatelessWidget {
         letterSpacing: letterSpacing ?? 0.0,
         color: color ?? R.color.black,
         fontFamily: fontFamily ?? R.fonts.interRegular,
-        fontSize: fontSize,
+        fontSize: fontSize ?? 14.0,
         decoration: underline! ? TextDecoration.underline : null,
         fontWeight: fontWeight ?? FontWeight.normal,
         height: lineHeight ?? 1.2,
@@ -48,16 +48,23 @@ class TextBasic extends StatelessWidget {
   }
 }
 
-TextSpan textSpanBasic(
-    {String? text, Color? color, String? fontFamily, FontWeight? fontWeight, double? fontSize, bool? underline = false}) {
+TextSpan textSpanBasic({
+  String? text,
+  Color? color,
+  String? fontFamily,
+  FontWeight? fontWeight,
+  double? fontSize,
+  bool? underline = false,
+}) {
   return TextSpan(
     text: text,
     style: TextStyle(
-        color: color,
-        fontFamily: fontFamily ?? R.fonts.interRegular,
-        fontSize: fontSize,
-        fontWeight: fontWeight ?? FontWeight.normal,
-        decoration: underline! ? TextDecoration.underline : null),
+      color: color,
+      fontFamily: fontFamily ?? R.fonts.interRegular,
+      fontSize: fontSize,
+      fontWeight: fontWeight ?? FontWeight.normal,
+      decoration: underline! ? TextDecoration.underline : null,
+    ),
   );
 }
 
@@ -66,6 +73,7 @@ class RichTextBasic extends StatelessWidget {
   final TextAlign? textAlign;
 
   const RichTextBasic({Key? key, this.texts, this.textAlign}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return RichText(

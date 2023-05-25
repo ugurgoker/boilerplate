@@ -61,7 +61,7 @@ class _TransitionSplashState extends State<TransitionSplash> with TickerProvider
 
     _positionController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 2000),
     );
 
     _positionAnimation =

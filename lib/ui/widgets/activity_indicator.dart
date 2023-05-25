@@ -20,9 +20,34 @@ class ActivityIndicator extends StatelessWidget {
 
   Widget _getActivityIndicator() {
     if (Platform.isAndroid) {
-      return CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(R.color.white.withOpacity(0.7)));
+      return const AndroidIndicator();
     } else {
-      return const CupertinoActivityIndicator();
+      return const IOSIndicator();
     }
+  }
+}
+
+class AndroidIndicator extends StatelessWidget {
+  final Color? color;
+  final double strokeWidth;
+
+  const AndroidIndicator({Key? key, this.color, this.strokeWidth = 4.0})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return CircularProgressIndicator(
+      valueColor: AlwaysStoppedAnimation(color ?? R.color.white.withOpacity(0.7)),
+      strokeWidth: strokeWidth,
+    );
+  }
+}
+
+class IOSIndicator extends StatelessWidget {
+  const IOSIndicator({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const CupertinoActivityIndicator();
   }
 }

@@ -1,14 +1,17 @@
 {
-    "appName": "Template Project",
+    "appName": "Boilerplate Project",
     "turkish": "Turkish",
     "english": "English",
-    "ok": "Ok",
+    "ok": "OK",
     "cancel": "Cancel",
     "genericError": "Something went wrong.",
     "networkError": "Please check your internet connection.",
-    "connectionTimeOut": "Connection timed out. Please try again.",
-    "accessStoragePermission": "Please grant storage access",
-    "accessCameraPermission": "Please grant camera access",
-    "accessGalleryPermission": "Please grant gallery access",
-    "accessLocationPermission": "Please grant location access"
+    "connectionTimeOut": "Connection timeout. Please try again.",
+    "accessStoragePermission": "Please allow storage access.",
+    "accessCameraPermission": "Please allow camera access",
+    "accessGalleryPermission": "Please allow gallery access",
+    "accessLocationPermission": "Please allow location access",
+    "pleaseUpdateApp": "Please update the app with the latest version",
+    "versionCheckMessage": "Your app is {value} version behind. We recommend that you update",
+    "logoutConfirmation": "Are you sure you want to sign out?"
 }

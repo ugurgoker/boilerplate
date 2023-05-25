@@ -1,30 +1,38 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import '../../ui/views/view_splash.dart';
-import '../../ui/views/view_login.dart';
+import '../constants/ui_brightness_style.dart';
+import 'router.dart';
+import 'router.gr.dart';
 
-export 'service_route.gr.dart';
+class ServiceRoute extends ChangeNotifier {
+  final UIBrightnessStyle uiBrightnessStyle = UIBrightnessStyle();
 
-@MaterialAutoRouter(
-  routes: <AutoRoute>[
-    AutoRoute(path: '/splash', page: ViewSplash),
-    AutoRoute(path: '/login', page: ViewLogin),
+  late GlobalKey<NavigatorState> navigatorKey;
+  static late RootRouter rootRouter;
+  static late AutoRouterDelegate routerDelegate;
 
-    RedirectRoute(path: '*', redirectTo: '/splash'),
-  ],
-)
-class $RootRouter {}
-
-class MyObserver extends AutoRouterObserver {
-  @override
-  void didPush(Route route, Route? previousRoute) {
-    log('didPush: ${route.isActive.toString()}');
+  ServiceRoute() {
+    navigatorKey = GlobalKey<NavigatorState>();
+    rootRouter = RootRouter(navigatorKey);
+    routerDelegate = AutoRouterDelegate(rootRouter, navigatorObservers: () => [RooterObserver()]);
   }
 
-  @override
-  void didPop(Route route, Route? previousRoute) {
-    log('didPop: ${route.isActive.toString()} ${previousRoute!.isActive.toString()}');
+  void onBackPressed<T extends Object?>([T? result, ChangeNotifier? viewModel]) {
+    rootRouter.pop(result);
+  }
+
+  Future<T?> startNewView<T>({required PageRouteInfo<dynamic> route, bool isReplace = false, bool clearStack = false}) async {
+    if (isReplace && clearStack) {
+      await rootRouter.replaceAll([route]);
+    } else if (isReplace) {
+      return await rootRouter.replace<T>(route);
+    } else {
+      return await rootRouter.push<T>(route);
+    }
+    return null;
+  }
+
+  void hideKeyboard(BuildContext context) {
+    FocusScope.of(context).unfocus();
   }
 }

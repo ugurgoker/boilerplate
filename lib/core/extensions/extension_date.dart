@@ -7,11 +7,34 @@ extension ExtensionDateTime on DateTime {
     return DateFormat('MMMM dd', LanguageController.currentLocale.toLanguageTag()).format(this);
   }
 
-  String dayMontNameAndYear() {
+  String dayMonthNameAndYear() {
     return DateFormat('dd MMMM yyyy', LanguageController.currentLocale.toLanguageTag()).format(this);
   }
 
-  String dateBetween(BuildContext context, DateTime startDate) {
-    return '7 gün önce';
+  String hourAndMinute() {
+    return DateFormat('hh:mm', LanguageController.currentLocale.toLanguageTag()).format(this);
+  }
+
+  String dayMonthYear() {
+    return DateFormat('dd.MM.yyyy', LanguageController.currentLocale.toLanguageTag()).format(this);
+  }
+
+  String daydMonth() {
+    return DateFormat('dd EEE', LanguageController.currentLocale.toLanguageTag()).format(this);
+  }
+
+  bool isWeekend() {
+    return weekday == DateTime.saturday || weekday == DateTime.sunday;
+  }
+
+  int get weekOfMonth {
+    var date = this;
+    final firstDayOfTheMonth = DateTime(date.year, date.month, 1);
+    int sum = firstDayOfTheMonth.weekday - 1 + date.day;
+    if (sum % 7 == 0) {
+      return sum ~/ 7;
+    } else {
+      return sum ~/ 7 + 1;
+    }
   }
 }

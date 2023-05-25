@@ -1,3 +1,4 @@
+
 import '../resources/color.dart';
 import '../resources/dimens.dart';
 import '../resources/drawable.dart';
@@ -9,6 +10,7 @@ class R {
     _drawable = null;
     _color = null;
     _fonts = null;
+    _themeColor = null;
     _string = null;
     _dimens = null;
   }
@@ -18,6 +20,9 @@ class R {
 
   static AppColor? _color;
   static AppColor get color => _color ??= AppColor();
+
+  static AppThemeColor? _themeColor;
+  static AppThemeColor get themeColor => _themeColor ??= AppThemeColor();
 
   static Fonts? _fonts;
   static Fonts get fonts => _fonts ??= Fonts();

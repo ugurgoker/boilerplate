@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/services.dart';
 
@@ -9,69 +10,69 @@ import '../resources/_r.dart';
 import '../utils/general_data.dart';
 
 class LanguageController {
-  static AppLanguage currentAppLang = AppLanguage.tr;
+  static AppLanguage currentAppLang = AppLanguage.en;
 
-  static ModelDropdown tr = ModelDropdown(id: AppLanguage.tr.index, title: 'Türkçe');
-  static ModelDropdown en = ModelDropdown(id: AppLanguage.en.index, title: 'İngilizce');
+  static ModelDropdown tr = ModelDropdown(id: AppLanguage.tr.id, title: 'Türkçe', text: 'tr');
+  static ModelDropdown en = ModelDropdown(id: AppLanguage.en.id, title: 'İngilizce', text: 'en');
 
   static late Locale currentLocale;
   static late Map<String, dynamic> selectedLocaleJson;
 
-  static late ModelDropdown selectedLang;
-
   static const String translationsPath = 'assets/translations';
-  static const List<Locale> supportedLocales = [Locale('tr', 'TR'), Locale('en', 'US')];
+  static const List<Locale> supportedLocales = [Locale('en', 'US'), Locale('tr', 'TR')];
 
   static Future<void> setLanguage(AppLanguage language) async {
-    if(GeneralData.getInstance().getLanguage() != language) {
+    if (GeneralData.getInstance().getLanguage() != language) {
       currentAppLang = language;
       GeneralData.getInstance().setLanguage(language);
       await initialize();
     }
     R.refreshClass();
-    
+
     log('current language: ${currentLocale.toLanguageTag()}', name: 'LOCALIZATION');
   }
 
   static Future<void> initialize() async {
     switch (GeneralData.getInstance().getLanguage()) {
       case AppLanguage.en:
-        currentLocale = supportedLocales[1];
+        currentLocale = supportedLocales[0];
         currentAppLang = AppLanguage.en;
         await loadLang();
-        selectedLang = en;
         break;
       case AppLanguage.tr:
-        currentLocale = supportedLocales[0];
+        currentLocale = supportedLocales[1];
         currentAppLang = AppLanguage.tr;
         await loadLang();
-        selectedLang = tr;
         break;
       default:
+        var deviceLocale = Locale(Platform.localeName.substring(0, 2));
+        int localeIndex = supportedLocales.indexWhere((element) => element.languageCode == deviceLocale.languageCode);
+        if (localeIndex == -1) {
+          currentLocale = supportedLocales[0];
+          currentAppLang = AppLanguage.en;
+          await loadLang();
+          break;
+        }
+        currentLocale = supportedLocales[localeIndex];
+        currentAppLang = AppLanguage.locale;
+        await loadLang();
+        break;
     }
-    
-    
+
     log('current language: ${currentLocale.toLanguageTag()}', name: 'LOCALIZATION');
   }
 
   static Future<void> loadLang() async {
-    selectedLocaleJson = jsonDecode(await rootBundle.loadString(translationsPath + '/${currentLocale.toLanguageTag()}.json'));
-    en = ModelDropdown(id: AppLanguage.en.index, title: R.string.english);
-    tr = ModelDropdown(id: AppLanguage.tr.index, title: R.string.turkish);
-  }
-
-  static String getLanguageName() {
-    switch (GeneralData.getInstance().getLanguage()) {
-      case AppLanguage.tr:
-        return R.string.turkish;
-      case AppLanguage.en:
-        return R.string.english;
-      default:
-        return R.string.turkish;
-    }
+    selectedLocaleJson = jsonDecode(await rootBundle.loadString('$translationsPath/${currentLocale.toLanguageTag()}.json'));
   }
 
   static List<ModelDropdown> getLanguagesForDropdown() {
     return [tr, en];
+  }
+
+  static getLocale(String tag) {
+    return supportedLocales.firstWhere((element) {
+      return element.languageCode.substring(0, 2) == tag;
+    });
   }
 }
